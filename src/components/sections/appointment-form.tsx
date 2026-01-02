@@ -65,6 +65,7 @@ export default function AppointmentForm({ appointmentType }: AppointmentFormProp
 
   const onSubmit = async (data: FormValues) => {
     try {
+      console.log("Submitting to:", `${API_BASE_URL}/api/appointments`);
       const res = await fetch(`${API_BASE_URL}/api/appointments`, {
         method: "POST",
         headers: {
@@ -80,17 +81,24 @@ export default function AppointmentForm({ appointmentType }: AppointmentFormProp
         }),
       });
 
-      const json = await res.json();
+      const json = await res.json().catch(() => ({})); // Handle empty/non-json responses
 
       if (res.ok) {
-        alert(`Success: ${json.message}`);
+        alert("✅ Success: Appointment Booked!");
         form.reset();
       } else {
-        alert(`Error: ${json.message}`);
+        console.error("Server Error:", res.status, json);
+        if (res.status === 500) {
+          alert("❌ Server Error: The backend is missing Google Sheets keys. Please check Vercel Environment Variables.");
+        } else if (res.status === 404) {
+          alert("❌ Error 404: Backend URL is wrong. Please check api.js");
+        } else {
+          alert(`❌ Error: ${json.message || "Failed to create appointment"}`);
+        }
       }
 
     } catch (err) {
-      alert("Something went wrong. Please try again.");
+      alert("⚠️ Network Error: Could not connect to backend. Check internet or if backend is deployed.");
       console.error(err);
     }
   };
