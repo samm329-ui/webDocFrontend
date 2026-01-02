@@ -1,3 +1,3 @@
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || (process.env.NODE_ENV === 'production'
-    ? "https://your-backend-url.vercel.app" // Placeholder - User will override this with Env Var
+    ? "https://web-doc-vert.vercel.app"
     : "http://localhost:9002");

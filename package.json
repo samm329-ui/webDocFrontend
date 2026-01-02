@@ -68,6 +68,13 @@
   "overrides": {
     "glob": "^10.4.5",
     "rimraf": "^5.0.0",
-    "inflight": "^1.0.6"
+    "inflight": "^1.0.6",
+    "are-we-there-yet": "^3.0.0",
+    "gauge": "^4.0.0",
+    "npmlog": "^6.0.0"
+  },
+  "resolutions": {
+    "glob": "^10.4.5",
+    "rimraf": "^5.0.0"
   }
 }
