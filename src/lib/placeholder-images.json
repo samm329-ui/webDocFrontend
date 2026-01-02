@@ -1,0 +1,52 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-doctor",
+      "description": "Illustration of a friendly dentist.",
+      "imageUrl": "https://images.unsplash.com/photo-1659718282278-fd3ba02cb782?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkb2N0b3IlMjBpbGx1c3RyYXRpb258ZW58MHx8fHwxNzY3MjU1MDI1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dentist illustration"
+    },
+    {
+      "id": "about-doctor",
+      "description": "Portrait of the doctor.",
+      "imageUrl": "https://images.unsplash.com/photo-1612349316228-5942a9b489c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkb2N0b3IlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjcyMzMwNjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dentist portrait"
+    },
+    {
+      "id": "cavities",
+      "description": "An image of a tooth with a cavity.",
+      "imageUrl": "https://images.unsplash.com/photo-1619988252418-a1e6ee10b122?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0b290aCUyMGNhdml0eXxlbnwwfHx8fDE3NjcyNjkyODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tooth cavity"
+    },
+    {
+      "id": "gum-disease",
+      "description": "An image showing gum disease.",
+      "imageUrl": "https://images.unsplash.com/photo-1677948855509-c12a2b67d304?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxnaW5naXZpdGlzJTIwZ3Vtc3xlbnwwfHx8fDE3NjcyNzAwNjl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gingivitis gums"
+    },
+    {
+      "id": "tooth-sensitivity",
+      "description": "An image showing tooth sensitivity.",
+      "imageUrl": "https://images.unsplash.com/photo-1755086598087-771fc08e1ae5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dG9vdGglMjBzZW5zaXRpdml0eXxlbnwwfHx8fDE3NjcyNjkyODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tooth sensitivity"
+    },
+    {
+      "id": "bad-breath",
+      "description": "An image related to bad breath.",
+      "imageUrl": "https://images.unsplash.com/photo-1758600436272-efba9e8183f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxiYWQlMjBicmVhdGh8ZW58MHx8fHwxNzY3MjY5Mjg1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "bad breath"
+    },
+    {
+      "id": "tooth-erosion",
+      "description": "An image of tooth erosion.",
+      "imageUrl": "https://images.unsplash.com/photo-1650739353152-5488298a9d38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0b290aCUyMGVyb3Npb258ZW58MHx8fHwxNzY3MjY5Mjg1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tooth erosion"
+    },
+    {
+      "id": "oral-cancer",
+      "description": "An image related to oral cancer awareness.",
+      "imageUrl": "https://images.unsplash.com/photo-1684607632910-5afbe351a2cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxvcmFsJTIwY2FuY2VyfGVufDB8fHx8MTc2NzI2OTI4NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "oral cancer"
+    }
+  ]
+}

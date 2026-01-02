@@ -1,0 +1,396 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 29% 95%; /* #F0F4F8 */
+    --foreground: 224 71.4% 4.1%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+
+    --primary: 202 80% 50%; /* Reverted to a vibrant blue */
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 210 29% 90%;
+    --secondary-foreground: 224 71.4% 4.1%;
+
+    --muted: 210 29% 90%;
+    --muted-foreground: 220 8.9% 46.1%;
+
+    --accent: 80 80% 55%; /* A more vibrant green for accents */
+    --accent-foreground: 224 71.4% 4.1%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 210 29% 88%;
+    --input: 210 29% 88%;
+    --ring: 202 80% 50%;
+
+    --radius: 0.8rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 202 80% 50%;
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+
+    --accent: 80 80% 55%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 202 80% 50%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased scroll-pt-20;
+  }
+}
+
+/* From Uiverse.io by satyamchaudharydev */
+.appointment-card {
+  --border-radius: 0.75rem;
+  --primary-color: hsl(var(--primary));
+  --secondary-color: #3c3852;
+  width: 250px;
+  font-family: "Arial";
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  background: #f1f1f3;
+  box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 3%);
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.appointment-card > * + * {
+  margin-top: 1.1em;
+}
+
+.appointment-card .card__content {
+  color: var(--secondary-color);
+  font-size: 0.86rem;
+}
+
+.appointment-card .card__title {
+  padding: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.appointment-card .card__date {
+  color: #6e6b80;
+  font-size: 0.8rem;
+}
+
+.appointment-card .card__arrow {
+  position: absolute;
+  background: var(--primary-color);
+  padding: 0.4rem;
+  border-top-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  bottom: 0;
+  right: 0;
+  transition: 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.appointment-card svg {
+  transition: 0.2s;
+}
+
+/* hover */
+.appointment-card:hover {
+  transform: scale(1.05);
+}
+
+.appointment-card:hover .card__title {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.appointment-card:hover .card__arrow {
+  background: #111;
+}
+
+.appointment-card:hover .card__arrow svg {
+  transform: translateX(3px);
+}
+
+
+/* From Uiverse.io by PriyanshuGupta28 */
+.spinner {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+}
+
+.spinner div {
+  position: absolute;
+  width: 50%;
+  height: 150%;
+  background: #000000;
+  transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
+  animation: spinner-fzua35 1s calc(var(--delay) * 1s) infinite ease;
+}
+
+.spinner div:nth-child(1) {
+  --delay: 0.1;
+  --rotation: 36;
+  --translation: 150;
+}
+
+.spinner div:nth-child(2) {
+  --delay: 0.2;
+  --rotation: 72;
+  --translation: 150;
+}
+
+.spinner div:nth-child(3) {
+  --delay: 0.3;
+  --rotation: 108;
+  --translation: 150;
+}
+
+.spinner div:nth-child(4) {
+  --delay: 0.4;
+  --rotation: 144;
+  --translation: 150;
+}
+
+.spinner div:nth-child(5) {
+  --delay: 0.5;
+  --rotation: 180;
+  --translation: 150;
+}
+
+.spinner div:nth-child(6) {
+  --delay: 0.6;
+  --rotation: 216;
+  --translation: 150;
+}
+
+.spinner div:nth-child(7) {
+  --delay: 0.7;
+  --rotation: 252;
+  --translation: 150;
+}
+
+.spinner div:nth-child(8) {
+  --delay: 0.8;
+  --rotation: 288;
+  --translation: 150;
+}
+
+.spinner div:nth-child(9) {
+  --delay: 0.9;
+  --rotation: 324;
+  --translation: 150;
+}
+
+.spinner div:nth-child(10) {
+  --delay: 1;
+  --rotation: 360;
+  --translation: 150;
+}
+
+@keyframes spinner-fzua35 {
+  0%, 10%, 20%, 30%, 50%, 60%, 70%, 80%, 90%, 100% {
+    transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
+  }
+
+  50% {
+    transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1.5%));
+  }
+}
+
+.mind-map-item {
+  position: absolute;
+  width: 240px;
+  text-align: center;
+}
+
+.mind-map-content {
+  background-color: hsla(var(--card) / 0.7);
+  backdrop-filter: blur(8px);
+  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+.mind-map-arrow {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  z-index: -1;
+}
+
+.mind-map-top {
+  bottom: calc(100% - 10px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mind-map-top .mind-map-arrow {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+}
+
+.mind-map-top .mind-map-arrow path {
+  d: path("M50,100 Q0,50 50,0");
+}
+
+.mind-map-left {
+  right: calc(100% + 50px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mind-map-left .mind-map-arrow {
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%) rotate(0deg);
+}
+.mind-map-left .mind-map-arrow path {
+  d: path("M0,50 Q50,0 100,50");
+}
+
+
+.mind-map-right {
+  left: calc(100% + 50px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mind-map-right .mind-map-arrow {
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.mind-map-right .mind-map-arrow path {
+   d: path("M100,50 Q50,100 0,50");
+}
+
+/* From Uiverse.io by ahmed150up2 */ 
+.contact-card.card {
+  display: flex;
+  height: 70px;
+  width: 270px;
+}
+
+.contact-card.card .social-link1,.card .social-link2,.card .social-link3,.card .social-link4 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  color: hsl(var(--foreground));
+  font-size: 24px;
+  text-decoration: none;
+  transition: all 0.25s;
+  border-radius: 50px;
+}
+
+.contact-card.card svg {
+  transform: scale(1);
+}
+
+.contact-card.card .social-link1 {
+  background-color: rgba(128, 128, 128, 0.1);
+}
+.contact-card.card .social-link2 {
+  background-color: rgba(128, 128, 128, 0.1);
+}
+.contact-card.card .social-link3 {
+  background-color: rgba(128, 128, 128, 0.1);
+}
+.contact-card.card .social-link4 {
+  background-color: rgba(128, 128, 128, 0.1);
+}
+
+.contact-card.card .social-link1:hover {
+  background: #4285F4;
+  transform: scale(1.1);
+  color: white;
+}
+
+.contact-card.card .social-link2:hover {
+  background-color: #fca311;
+  transform: scale(1.1);
+  color: white;
+}
+
+.contact-card.card .social-link3:hover {
+  background-color: #ea4335;
+  transform: scale(1.1);
+  color: white;
+}
+
+.contact-card.card .social-link4:hover {
+  background-color: #25d366;
+  transform: scale(1.1);
+  color: white;
+}
+
+    
+
+    
+
+    
+
+
+
+
+    
+
+    
+
