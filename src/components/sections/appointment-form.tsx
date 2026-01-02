@@ -88,12 +88,11 @@ export default function AppointmentForm({ appointmentType }: AppointmentFormProp
         form.reset();
       } else {
         console.error("Server Error:", res.status, json);
-        if (res.status === 500) {
-          alert("❌ Server Error: The backend is missing Google Sheets keys. Please check Vercel Environment Variables.");
-        } else if (res.status === 404) {
+        if (res.status === 404) {
           alert("❌ Error 404: Backend URL is wrong. Please check api.js");
         } else {
-          alert(`❌ Error: ${json.message || "Failed to create appointment"}`);
+          // Show the exact message from the backend (e.g. "Backend Error: Credentials not configured")
+          alert(`❌ ${json.message || "Failed to create appointment"}`);
         }
       }
 
