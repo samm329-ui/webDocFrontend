@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Logo from "@/components/logo";
+import { Menu, UserCircle2 } from "lucide-react";
 
 const navLinks = [
   { href: "#services", label: "Ailments", className: "w-auto text-center" },
@@ -18,12 +19,13 @@ export default function Header({ onLoginClick, onSignUpClick, user, onLogout }: 
 
   return (
     <header className="sticky top-0 z-50 w-full bg-slate-800 text-slate-300">
-      <div className="container flex h-20 items-center justify-between">
+      {/* Desktop Header */}
+      <div className="container hidden md:flex h-20 items-center justify-between">
         <Link href="/" className="flex items-center">
           <Logo className="[&>span]:text-white" />
         </Link>
 
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="flex items-center space-x-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -35,7 +37,7 @@ export default function Header({ onLoginClick, onSignUpClick, user, onLogout }: 
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="flex items-center space-x-4">
           {user ? (
             <>
               <span className="text-sm text-slate-300/80">Welcome!</span>
@@ -48,55 +50,61 @@ export default function Header({ onLoginClick, onSignUpClick, user, onLogout }: 
             </>
           )}
         </div>
+      </div>
 
-        <div className="md:hidden">
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <Button variant="outline" className="text-white border-white/50 hover:bg-slate-700 hover:text-white">
-                <span className="sr-only">Open menu</span>
-                Menu
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-slate-800 text-slate-300 border-l-slate-700">
-              <div className="flex flex-col h-full">
-                <div className="flex items-center justify-between p-4 border-b border-slate-700">
-                   <Link href="/" onClick={() => setIsOpen(false)}>
-                     <Logo className="[&>span]:text-white"/>
-                   </Link>
-                  <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="text-white hover:bg-slate-700">
-                    <span className="sr-only">Close menu</span>
-                    X
-                  </Button>
-                </div>
-                <nav className="flex flex-col items-start space-y-4 p-4">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="text-lg font-medium text-slate-300/80 transition-colors hover:text-white"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </nav>
-                <div className="mt-auto p-4 border-t border-slate-700 space-y-4">
-                  {user ? (
-                    <>
-                       <div className="text-center text-white">Welcome!</div>
-                       <Button onClick={() => { onLogout(); setIsOpen(false); }} className="w-full bg-primary hover:bg-primary/90">Logout</Button>
-                    </>
-                  ) : (
-                    <>
-                      <Button variant="ghost" onClick={() => { onLoginClick(); setIsOpen(false); }} className="w-full text-white hover:bg-slate-700">Login</Button>
-                      <Button onClick={() => { onSignUpClick(); setIsOpen(false);}} className="w-full bg-primary hover:bg-primary/90">Sign Up</Button>
-                    </>
-                  )}
-                </div>
+      {/* Mobile Header */}
+      <div className="flex md:hidden h-16 items-center justify-between px-4">
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon" className="text-white hover:bg-slate-700">
+              <Menu className="h-6 w-6" />
+              <span className="sr-only">Open menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-[300px] bg-slate-800 text-slate-300 border-r-slate-700">
+            <div className="flex flex-col h-full pt-6">
+              <nav className="flex flex-col items-start space-y-4">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-lg font-medium text-slate-300/80 transition-colors hover:text-white"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+              <div className="mt-auto pb-6 space-y-4">
+                {user ? (
+                  <>
+                    <div className="text-center text-white">Welcome!</div>
+                    <Button onClick={() => { onLogout(); setIsOpen(false); }} className="w-full bg-primary hover:bg-primary/90">Logout</Button>
+                  </>
+                ) : (
+                  <>
+                    <Button variant="ghost" onClick={() => { onLoginClick(); setIsOpen(false); }} className="w-full text-white hover:bg-slate-700">Login</Button>
+                    <Button onClick={() => { onSignUpClick(); setIsOpen(false); }} className="w-full bg-primary hover:bg-primary/90">Sign Up</Button>
+                  </>
+                )}
               </div>
-            </SheetContent>
-          </Sheet>
+            </div>
+          </SheetContent>
+        </Sheet>
+
+        <div className="absolute left-1/2 -translate-x-1/2 text-white font-semibold text-base">
+          Dr. Dutta's Dental
         </div>
+
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={user ? onLogout : onLoginClick}
+          className="text-white hover:bg-slate-700"
+        >
+          <UserCircle2 className="h-6 w-6" />
+          <span className="sr-only">{user ? 'Logout' : 'Login'}</span>
+        </Button>
       </div>
     </header>
   );

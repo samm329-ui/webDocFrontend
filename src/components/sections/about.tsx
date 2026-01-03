@@ -3,8 +3,9 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Briefcase, GraduationCap, Trophy } from "lucide-react";
+import { GraduationCap, Award, Briefcase } from "lucide-react";
 import { motion, useInView } from "framer-motion";
+import useEmblaCarousel from 'embla-carousel-react';
 import {
   Dialog,
   DialogContent,
@@ -15,91 +16,139 @@ import {
 
 const qualifications = [
   {
-    icon: GraduationCap,
-    title: "Education & Qualifications",
-    description: "BDS from WBUHS.",
-    detailedDescription: "Dr. Soumyadeep Dutta earned his Bachelor of Dental Surgery (BDS) from the prestigious West Bengal University of Health Sciences (WBUHS), where he graduated with honors. He is committed to lifelong learning and regularly participates in advanced training courses to stay at the forefront of dental innovation and technology.",
-    position: "left",
+    icon: Briefcase,
+    title: "About Doctor",
+    subtitle: "10+ Years Experience",
+    description: "Trusted by 900+ Patients",
+    detailedDescription: "Dr. Soumyadeep Dutta has been practicing dentistry for over 10 years, earning the trust of more than 900 patients. His patient-centered approach ensures that every individual receives personalized care tailored to their unique needs.",
+    image: PlaceHolderImages.find(p => p.id === 'about-doctor')
   },
   {
-    icon: Trophy,
-    title: "Awards & Recognition",
-    description: "Top Dentist (2021, 2023) & Patients' Choice Award.",
+    icon: GraduationCap,
+    title: "Education",
+    subtitle: "BDS + WBUHD",
+    description: "Advanced Surgical Training",
+    detailedDescription: "Dr. Soumyadeep Dutta earned his Bachelor of Dental Surgery (BDS) from the prestigious West Bengal University of Health Sciences (WBUHS), where he graduated with honors. He is committed to lifelong learning and regularly participates in advanced training courses to stay at the forefront of dental innovation and technology.",
+    image: PlaceHolderImages.find(p => p.id === 'education')
+  },
+  {
+    icon: Award,
+    title: "Awards",
+    subtitle: "Best Dentist 2020",
+    description: "Patient's Choice",
     detailedDescription: "Dr. Dutta's commitment to excellence has been recognized with multiple accolades, including being named 'Top Dentist' in both 2021 and 2023. He is also a recipient of the 'Patients' Choice Award,' a testament to his compassionate approach and the high level of satisfaction among his patients.",
-    position: "right",
+    image: PlaceHolderImages.find(p => p.id === 'awards')
   },
 ];
 
-const cardVariants = {
-  left: {
-    hidden: { x: -100, opacity: 0 },
-    visible: { x: 0, opacity: 1 },
-  },
-  right: {
-    hidden: { x: 100, opacity: 0 },
-    visible: { x: 0, opacity: 1 },
-  },
-};
-
 export default function About() {
-  const aboutDoctorImage = PlaceHolderImages.find(p => p.id === 'about-doctor');
+  const [emblaRef] = useEmblaCarousel({ loop: false, align: 'start' });
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.5 });
+  const isInView = useInView(ref, { once: false, amount: 0.3 });
 
   return (
     <section
       id="about"
       ref={ref}
-      className="relative py-24 md:py-32 bg-white dark:bg-card overflow-hidden"
+      className="relative py-16 md:py-32 bg-white dark:bg-card"
     >
-      {aboutDoctorImage && (
-        <Image
-          src={aboutDoctorImage.imageUrl}
-          alt="Background image of the doctor"
-          fill
-          className="object-cover z-0"
-          data-ai-hint={aboutDoctorImage.imageHint}
-        />
-      )}
-      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm z-10"></div>
+      <div className="container px-4">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold font-headline tracking-tight">
+            Dr. Soumyadeep Dutta
+          </h2>
+          <p className="mt-3 md:mt-4 text-primary font-semibold text-sm md:text-lg">
+            A Leader in Dental Care
+          </p>
+        </div>
 
-      <div className="container relative z-20 flex justify-center items-center min-h-[500px]">
-        <div className="relative pt-24 text-center">
+        {/* Mobile Carousel */}
+        <div className="md:hidden overflow-hidden" ref={emblaRef}>
+          <div className="flex gap-4">
+            {qualifications.map((item, index) => (
+              <div
+                key={item.title}
+                className="flex-[0_0_85%] min-w-0"
+              >
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <div className="bg-white rounded-2xl shadow-lg p-5 cursor-pointer hover:shadow-xl transition-shadow h-full border border-slate-200">
+                      {item.image && (
+                        <div className="relative w-full h-40 rounded-xl overflow-hidden mb-4">
+                          <Image
+                            src={item.image.imageUrl}
+                            alt={item.image.description}
+                            fill
+                            className="object-cover"
+                            data-ai-hint={item.image.imageHint}
+                          />
+                        </div>
+                      )}
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground">
+                          <item.icon className="w-5 h-5" />
+                        </div>
+                        <h3 className="font-bold text-lg">{item.title}</h3>
+                      </div>
+                      <p className="text-sm text-muted-foreground font-medium mb-1">{item.subtitle}</p>
+                      <p className="text-xs text-muted-foreground">{item.description}</p>
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px] bg-background border-primary text-foreground">
+                    <DialogHeader>
+                      <DialogTitle className="flex items-center gap-2">
+                        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground">
+                          <item.icon className="w-5 h-5" />
+                        </div>
+                        {item.title}
+                      </DialogTitle>
+                    </DialogHeader>
+                    <div className="py-4">
+                      <p className="text-sm text-foreground">
+                        {item.detailedDescription}
+                      </p>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            ))}
+          </div>
+        </div>
 
-          <motion.div
-            className="relative z-10 flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm rounded-full w-64 h-64 p-4 text-center shadow-2xl border-4 border-primary"
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-          >
-            <h2 className="text-3xl font-bold font-headline tracking-tighter">
-              DR. SOUMYADEEP DUTTA
-            </h2>
-            <p className="mt-2 text-primary font-semibold">
-              A Leader in Dental Care
-            </p>
-          </motion.div>
-
+        {/* Desktop Grid */}
+        <div className="hidden md:grid grid-cols-3 gap-6">
           {qualifications.map((item, index) => (
             <motion.div
               key={item.title}
-              className={`mind-map-item mind-map-${item.position}`}
-              variants={cardVariants[item.position as keyof typeof cardVariants]}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 + index * 0.2 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
             >
               <Dialog>
                 <DialogTrigger asChild>
-                  <div className="mind-map-content cursor-pointer transition-transform hover:scale-105">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground mb-3">
-                      <item.icon className="w-6 h-6" />
+                  <div className="bg-white rounded-2xl shadow-lg p-6 cursor-pointer hover:shadow-xl transition-shadow h-full border border-slate-200">
+                    {item.image && (
+                      <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+                        <Image
+                          src={item.image.imageUrl}
+                          alt={item.image.description}
+                          fill
+                          className="object-cover"
+                          data-ai-hint={item.image.imageHint}
+                        />
+                      </div>
+                    )}
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground">
+                        <item.icon className="w-6 h-6" />
+                      </div>
+                      <h3 className="font-bold text-xl">{item.title}</h3>
                     </div>
-                    <h3 className="font-semibold text-lg">{item.title}</h3>
-                    <p className="text-muted-foreground mt-1 text-sm">{item.description}</p>
+                    <p className="text-sm text-muted-foreground font-medium mb-2">{item.subtitle}</p>
+                    <p className="text-sm text-muted-foreground">{item.description}</p>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] bg-background/80 backdrop-blur-md border-primary text-foreground">
+                <DialogContent className="sm:max-w-[425px] bg-background border-primary text-foreground">
                   <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">
                       <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground">
@@ -115,10 +164,14 @@ export default function About() {
                   </div>
                 </DialogContent>
               </Dialog>
-              <svg className="mind-map-arrow" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <path d="M0,50 Q50,0 100,50" stroke="hsl(var(--primary))" fill="transparent" strokeWidth="2" />
-              </svg>
             </motion.div>
+          ))}
+        </div>
+
+        {/* Carousel dots indicator for mobile */}
+        <div className="flex md:hidden justify-center gap-2 mt-6">
+          {qualifications.map((_, index) => (
+            <div key={index} className="w-2 h-2 rounded-full bg-slate-300"></div>
           ))}
         </div>
       </div>
